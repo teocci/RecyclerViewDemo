@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RecyclerViewDemo</string>
+    <string name="card_view_content">blah blah blah......</string>
+    <string name="action_settings">Settings</string>
+</resources>

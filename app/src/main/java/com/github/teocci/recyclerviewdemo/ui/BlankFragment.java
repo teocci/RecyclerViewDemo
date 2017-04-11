@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.teocci.recyclerviewdemo.R;
-import com.github.teocci.recyclerviewdemo.RecyclerVirAdapter;
+import com.github.teocci.recyclerviewdemo.adapter.RecyclerViewAdapter;
 
 /**
- * Created by teocci on 3/13/17.
+ * Created by teocci.
+ *
+ * @author teocci@yandex.com on 2017/Mar/13
  */
 
 public class BlankFragment extends Fragment
@@ -37,7 +39,7 @@ public class BlankFragment extends Fragment
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
         recyclerView.setHasFixedSize(true);
-        RecyclerVirAdapter adapter = new RecyclerVirAdapter(new String[]{
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(new String[]{
                 "test one",
                 "test two",
                 "test three",

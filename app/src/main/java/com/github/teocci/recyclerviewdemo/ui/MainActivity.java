@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import com.github.teocci.recyclerviewdemo.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
 {
     @Override
@@ -26,8 +29,11 @@ public class MainActivity extends AppCompatActivity
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        PagerAdapter pagerAdapter =
-                new PagerAdapter(getSupportFragmentManager(), MainActivity.this);
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), MainActivity.this);
+
+        pagerAdapter.addFragment(new BlankFragment(), "Tab One");
+        pagerAdapter.addFragment(new BlankFragment(), "Tab Two");
+        pagerAdapter.addFragment(new BlankFragment(), "Tab Three");
         viewPager.setAdapter(pagerAdapter);
 
         // Give the TabLayout the ViewPager
@@ -60,19 +66,16 @@ public class MainActivity extends AppCompatActivity
     {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
-    class PagerAdapter extends FragmentPagerAdapter
+    private class PagerAdapter extends FragmentPagerAdapter
     {
-        String tabTitles[] = new String[]{"Tab One", "Tab Two", "Tab Three"};
+        private final List<Fragment> fragmentList = new ArrayList<>();
+        private final List<String> titleList = new ArrayList<>();
         Context context;
 
-        public PagerAdapter(FragmentManager fm, Context context)
+        PagerAdapter(FragmentManager fm, Context context)
         {
             super(fm);
             this.context = context;
@@ -81,36 +84,32 @@ public class MainActivity extends AppCompatActivity
         @Override
         public int getCount()
         {
-            return tabTitles.length;
+            return fragmentList.size();
         }
 
         @Override
         public Fragment getItem(int position)
         {
-            switch (position) {
-                case 0:
-                    return new BlankFragment();
-                case 1:
-                    return new BlankFragment();
-                case 2:
-                    return new BlankFragment();
-            }
-
-            return null;
+            return fragmentList.get(position);
         }
 
         @Override
         public CharSequence getPageTitle(int position)
         {
-            // Generate title based on item position
-            return tabTitles[position];
+            return titleList.get(position);
         }
 
-        public View getTabView(int position)
+        void addFragment(Fragment fragment, String title)
+        {
+            fragmentList.add(fragment);
+            titleList.add(title);
+        }
+
+        View getTabView(int position)
         {
             View tab = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, null);
             TextView tv = (TextView) tab.findViewById(R.id.custom_text);
-            tv.setText(tabTitles[position]);
+            tv.setText(titleList.get(position));
             return tab;
         }
     }

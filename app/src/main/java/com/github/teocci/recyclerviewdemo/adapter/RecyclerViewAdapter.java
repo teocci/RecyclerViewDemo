@@ -1,4 +1,4 @@
-package com.github.teocci.recyclerviewdemo;
+package com.github.teocci.recyclerviewdemo.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -7,16 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.teocci.recyclerviewdemo.R;
+
 /**
- * Created by teocci on 3/13/17.
+ * Created by teocci.
+ *
+ * @author teocci@yandex.com on 2017/Mar/13
  */
 
-public class RecyclerVirAdapter extends RecyclerView.Adapter<RecyclerVirAdapter.BaseViewHolder>
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.BaseViewHolder>
 {
     private String[] dataSet;
 
     // Provide a suitable constructor (depends on the kind of dataSet)
-    public RecyclerVirAdapter(String[] dataSet)
+    public RecyclerViewAdapter(String[] dataSet)
     {
         this.dataSet = dataSet;
     }
@@ -43,7 +47,6 @@ public class RecyclerVirAdapter extends RecyclerView.Adapter<RecyclerVirAdapter.
     {
         return dataSet.length;
     }
-
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and

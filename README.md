@@ -31,3 +31,7 @@ To use the RecyclerView you need to follow the following steps:
 5. Create the ViewHolder to provide a reference to the views for each data item
 6. Bind the Adapter to the RecyclerView in the Activity
 
+### License
+
+The code supplied here is covered under the MIT Open Source License.
+
